@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floodguard_ai/views/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
