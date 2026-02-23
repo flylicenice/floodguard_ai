@@ -1,4 +1,5 @@
 import 'package:floodguard_ai/views/pages/register_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,12 +12,44 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  String? errorMessage;
+  bool isLoading = false;
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> login() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+    });
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // success -> AuthGate will handle navigation
+    } catch (e) {
+      setState(() {
+        errorMessage = "Login details not correct";
+        emailController.clear();
+        passwordController.clear();
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
   }
 
   @override
@@ -47,7 +80,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 30),
-
                   // Card
                   Container(
                     padding: const EdgeInsets.all(20),
@@ -59,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         TextField(
                           controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             labelText: 'Email',
                             prefixIcon: Icon(Icons.email),
@@ -79,7 +112,17 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+
+                        const SizedBox(height: 10),
+
+                        if (errorMessage != null)
+                          Text(
+                            errorMessage!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+
                         const SizedBox(height: 20),
+
                         SizedBox(
                           width: double.infinity,
                           height: 50,
@@ -90,17 +133,15 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            onPressed: () {
-                              final email = emailController.text.trim();
-                              final password = passwordController.text.trim();
-
-                              print(email);
-                              print(password);
-                            },
-                            child: const Text(
-                              "Login",
-                              style: TextStyle(fontSize: 18),
-                            ),
+                            onPressed: isLoading ? null : login,
+                            child: isLoading
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : const Text(
+                                    "Login",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                           ),
                         ),
                       ],

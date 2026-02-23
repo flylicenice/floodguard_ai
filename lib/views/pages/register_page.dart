@@ -14,6 +14,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  String? errorMessage;
+  String? successMessage;
+  bool isLoading = false;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -27,10 +31,20 @@ class _RegisterPageState extends State<RegisterPage> {
     final password = passwordController.text.trim();
     final confirmPassword = confirmPasswordController.text.trim();
 
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+      successMessage = null;
+    });
+
     if (password != confirmPassword) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
+      setState(() {
+        errorMessage = "Passwords do not match";
+        emailController.clear();
+        passwordController.clear();
+        confirmPasswordController.clear();
+        isLoading = false;
+      });
       return;
     }
 
@@ -39,12 +53,26 @@ class _RegisterPageState extends State<RegisterPage> {
         email: email,
         password: password,
       );
+      setState(() {
+        successMessage = "Registration successful";
+        isLoading = false;
+      });
 
       // After successful registration, AuthGate will auto-redirect
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message ?? "Registration failed")),
-      );
+      setState(() {
+        errorMessage = e.message ?? "Invalid registration details";
+        isLoading = false;
+        emailController.clear();
+        passwordController.clear();
+        confirmPasswordController.clear();
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -67,7 +95,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   const Icon(Icons.person_add, size: 80, color: Colors.white),
                   const SizedBox(height: 10),
-
                   const Text(
                     'Create Account',
                     style: TextStyle(
@@ -89,6 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: [
                         TextField(
                           controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             labelText: 'Email',
                             prefixIcon: const Icon(Icons.email),
@@ -126,7 +154,24 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
+
+                        if (errorMessage != null)
+                          Text(
+                            errorMessage!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+
+                        if (successMessage != null)
+                          Text(
+                            successMessage!,
+                            style: const TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                        const SizedBox(height: 15),
 
                         SizedBox(
                           width: double.infinity,
@@ -138,11 +183,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            onPressed: registerUser,
-                            child: const Text(
-                              "Register",
-                              style: TextStyle(fontSize: 18),
-                            ),
+                            onPressed: isLoading ? null : registerUser,
+                            child: isLoading
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : const Text(
+                                    "Register",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                           ),
                         ),
                       ],
