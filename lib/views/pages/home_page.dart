@@ -1,5 +1,6 @@
 import 'package:floodguard_ai/views/pages/community_report_page.dart';
 import 'package:floodguard_ai/views/pages/trends_page.dart';
+import 'package:floodguard_ai/views/pages/weather_forecasts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'flood_map_page.dart';
@@ -88,10 +89,17 @@ class HomePage extends StatelessWidget {
                   ),
                   _actionButton(
                     context,
-                    icon: Icons.notifications,
-                    label: "Alerts",
+                    icon: Icons.cloud,
+                    label: "Weather Forecasts",
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Alerts coming soon")));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return WeatherForecastsPage();
+                          },
+                        ),
+                      );
                     },
                   ),
                   _actionButton(
@@ -163,11 +171,10 @@ class HomePage extends StatelessWidget {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(icon, size: 30, color: const Color(0xFF0D47A1)),
                 const SizedBox(height: 8),
-                Text(label),
+                Text(label, textAlign: TextAlign.center),
               ],
             ),
           ),

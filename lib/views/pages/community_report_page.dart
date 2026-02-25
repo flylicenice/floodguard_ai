@@ -15,6 +15,7 @@ class CommunityReportPage extends StatelessWidget {
 
       // 🔹 Floating button to add report
       floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.white,
         backgroundColor: const Color(0xFF0D47A1),
         child: const Icon(Icons.add, color: Colors.black),
         onPressed: () {
