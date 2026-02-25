@@ -1,13 +1,18 @@
-import 'package:floodguard_ai/pages/page_controller.dart' as page_controller;
+import 'package:floodguard_ai/widgets/auth_gate.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:floodguard_ai/services/ai_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
   await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
+  // Debug: List available Gemini models to console
+  // await AIService().listAvailableModels();
 }
 
 class MyApp extends StatelessWidget {
@@ -15,10 +20,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: page_controller.PageController(),
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue), useMaterial3: true),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: AuthGate());
   }
 }

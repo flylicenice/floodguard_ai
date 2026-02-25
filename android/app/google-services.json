@@ -26,4 +26,32 @@
     }
   ],
   "configuration_version": "1"
+}{
+  "project_info": {
+    "project_number": "740649181384",
+    "project_id": "floodguardai-37df5",
+    "storage_bucket": "floodguardai-37df5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740649181384:android:29b4519101b14037f1c5fd",
+        "android_client_info": {
+          "package_name": "com.example.floodguard_ai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_9FK2Dy5wtqR3pjbncHD8UYmxiLtzd-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }
