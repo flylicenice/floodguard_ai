@@ -1,4 +1,4 @@
-import 'package:floodguard_ai/controllers/weather_forecasts_controller.dart';
+import 'package:floodguard_ai/services/weather_forecasts_service.dart';
 import 'package:flutter/material.dart';
 
 class WeatherForecastTile extends StatelessWidget {

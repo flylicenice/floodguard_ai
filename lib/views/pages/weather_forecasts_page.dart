@@ -1,7 +1,7 @@
-import 'package:floodguard_ai/components/weather_forecast_tile.dart';
-import 'package:floodguard_ai/pages/add_weather_forecast_page.dart';
+import 'package:floodguard_ai/widgets/weather_forecast_tile.dart';
+import 'package:floodguard_ai/views/pages/add_weather_forecast_page.dart';
 import 'package:flutter/material.dart';
-import 'package:floodguard_ai/controllers/weather_forecasts_controller.dart';
+import 'package:floodguard_ai/services/weather_forecasts_service.dart';
 
 class WeatherForecastsPage extends StatefulWidget {
   const WeatherForecastsPage({super.key});
