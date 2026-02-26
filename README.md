@@ -146,6 +146,12 @@ Predicts potential flood occurrences
 
 If rainfall exceeds learned danger thresholds → ⚠️ High flood probability alert is triggered.
 
+### 🌩️ 5. Real-time Weather Forecasts
+
+The system:
+
+Allows users to choose a city in Malaysia and view its current weather condition and temperature
+
 ---
 
 ## 🛠 Technical Implementation
@@ -242,20 +248,25 @@ We have also met challenges where we are working on the AI to define appropriate
 ```bash
 git clone https://github.com/EugeneHZC/floodguard-ai.git
 ```
+
 ### (2) Navigate to the project
+
 ```bash
 cd floodguard-ai
 ```
 
 ### (3) Install dependencies
+
 ```bash
 flutter pub get
 ```
 
 ### (4) Run the app
+
 ```bash
 flutter run
 ```
+
 ---
 
 ## Future Roadmap
