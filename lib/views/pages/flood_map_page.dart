@@ -1,3 +1,4 @@
+import 'package:floodguard_ai/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../services/flood_data_service.dart';
@@ -10,7 +11,7 @@ class FloodMapPage extends StatefulWidget {
 }
 
 class _FloodMapPageState extends State<FloodMapPage> {
-    late GoogleMapController mapController;
+  late GoogleMapController mapController;
 
   final FloodDataService _service = FloodDataService();
   Set<Marker> markers = {};
@@ -30,15 +31,11 @@ class _FloodMapPageState extends State<FloodMapPage> {
           markerId: MarkerId(record.location + record.date.toString()),
           position: LatLng(record.lat, record.lng),
           icon: BitmapDescriptor.defaultMarkerWithHue(
-            record.flooded
-                ? BitmapDescriptor.hueRed
-                : BitmapDescriptor.hueGreen,
+            record.flooded ? BitmapDescriptor.hueRed : BitmapDescriptor.hueGreen,
           ),
           infoWindow: InfoWindow(
             title: record.location,
-            snippet: record.flooded
-                ? "Flooded • ${record.date.year}"
-                : "No Flood",
+            snippet: record.flooded ? "Flooded • ${record.date.year}" : "No Flood",
           ),
         );
       }).toSet();
@@ -48,12 +45,9 @@ class _FloodMapPageState extends State<FloodMapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Flood Risk Map")),
+      appBar: CustomAppbar(title: "Flood Risk Map", actions: []),
       body: GoogleMap(
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(3.1390, 101.6869),
-          zoom: 10,
-        ),
+        initialCameraPosition: const CameraPosition(target: LatLng(3.1390, 101.6869), zoom: 10),
         markers: markers,
         mapType: MapType.normal,
         myLocationEnabled: false,
