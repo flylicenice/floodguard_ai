@@ -179,9 +179,6 @@ We used **Firebase Firestore** for real-time cloud data storage.
 We used **Firebase Cloud Messaging (FCM)** for push notifications.  
 → This enables immediate flood warnings, improving emergency response time.
 
-We used **OpenWeather** to get real time weather forecasts.  
-→ This allows users to view weather forecasts of most locations in Malaysia.
-
 We used **Flutter** as the development framework.  
 → This ensures cross-platform accessibility (Android & iOS) with high performance.
 
