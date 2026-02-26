@@ -67,7 +67,7 @@ class _WeatherForecastsPageState extends State<WeatherForecastsPage> {
                 },
               ),
       ),
-      floatingActionButton: CustomFloatingActionButton(callback: onPressed),
+      floatingActionButton: CustomFloatingActionButton(callback: onPressed, tooltip: "Add Forecast",),
     );
   }
 }

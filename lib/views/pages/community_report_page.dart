@@ -10,17 +10,26 @@ class CommunityReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void onButtonClicked() {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => const ReportForm()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const ReportForm()),
+      );
     }
 
     return Scaffold(
       appBar: CustomAppbar(title: "Community Flood Reports", actions: []),
 
       // 🔹 Floating button to add report
-      floatingActionButton: CustomFloatingActionButton(callback: onButtonClicked),
+      floatingActionButton: CustomFloatingActionButton(
+        callback: onButtonClicked,
+        tooltip: "Add Report",
+      ),
 
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('reports').orderBy('timestamp', descending: true).snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('reports')
+            .orderBy('timestamp', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -45,7 +54,10 @@ class CommunityReportPage extends StatelessWidget {
                   subtitle: Text(data['comment']),
                   trailing: Text(
                     data['waterLevel'],
-                    style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               );
