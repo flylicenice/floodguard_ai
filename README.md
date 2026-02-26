@@ -40,6 +40,8 @@ HAN ZHI CHOU
 
 TAM KAI DIT
 
+---
+
 ## Project Overview
 
 ### Problem Statement
@@ -54,8 +56,6 @@ TAM KAI DIT
 
 - Clear, AI-powered safety recommendations
 
----
-
 ## 🎯 Alignment with AI & Sustainable Development Goals (SDGs)
 
 **FloodGuard AI** aligns with the United Nations Sustainable Development Goals (SDGs):
@@ -67,8 +67,6 @@ SDG 11 – Sustainable Cities and Communities
 SDG 13 – Climate Action
 
 By improving access to disaster information and enabling early warning systems, FloodGuard supports water equity and climate resilience
-
----
 
 ## Our Solution
 
@@ -163,8 +161,6 @@ If rainfall exceeds learned danger thresholds → ⚠️ High flood probability 
 - Firebase Firestore (Real-time database)
 - Firebase Authentication (Secure login system)
 - AI Prediction Model (Risk classification algorithm)
-
----
 
 ## 🔎 Google Technology Utilization (Cause & Effect)
 
