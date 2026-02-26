@@ -2,11 +2,43 @@
 
 AI-Powered Hyperlocal Flood Risk & Response Platform
 
-## 📌 Project Description
+---
 
-**FloodGuard AI** is a Flutter-based mobile application designed with Google Technology to provide hyperlocal flood risk monitoring, prediction and emergency response guidance. This project was developed as part of an innovation challenge with Sustainable Development Goals (SDGs), focusing pn climate resilience and disaster risk reduction. 
+## 📂 Repository Overview
 
-Flooding is one of the most frequent and destructive natural disasters, especially in vulnerable communities with limited early warning systems. Many existing systems provide general alerts but lack **hyperlocal, real-time, AI-driven insights** that help individuals take immediate action.
+FloodGuard AI is a Flutter-based hyperlocal flood prediction and response mobile application. This repository contains the complete source code, backend integration, and AI-driven risk analysis system designed to enhance disaster preparedness and community resilience.
+
+The project integrates real-time weather forecasting, rainfall data analysis, historical flood records, and community-sourced reports to generate intelligent flood probability predictions and personalized safety recommendations.
+
+### 🎯 Target Users
+
+Residents in flood-prone regions
+
+Local communities
+
+Emergency preparedness planners
+
+### 🌟 Core Capabilities
+
+Community flood reporting system
+
+Area-based weather forecast selection
+
+Rainfall threshold analysis
+
+AI-powered flood risk prediction
+
+Personalized safety recommendations
+
+### 👥 Team
+
+**YEOH JIA POH (Team Leader)**
+
+ASHLEE SIA WEI TIEN
+
+HAN ZHI CHOU
+
+TAM KAI DIT
 
 ## Project Overview
 
