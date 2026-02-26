@@ -88,11 +88,43 @@ We used **Flutter** as the development framework.
 
 ---
 
-## 📦 Setup Instructions
+## 📦 Installation and Setup Instruction
 
-### 1️⃣ Clone the repository
+### (1) Clone the repository
 
 ```bash
 git clone https://github.com/EugeneHZC/floodguard-ai.git
+```
+### (2) Navigate to the project
+```bash
 cd floodguard-ai
 ```
+
+### (3) Install dependencies
+```bash
+flutter pub get
+```
+
+### (4) Run the app
+```bash
+flutter run
+```
+---
+
+## Future Roadmap
+
+### 🔮 Planned Features:
+
+🌧 Real-time rainfall radar overlay
+
+🛰 Satellite imagery integration
+
+🏠 Nearby evacuation center locator
+
+📡 IoT water level sensor integration
+
+📈 Advanced machine learning flood prediction
+
+🌐 Web dashboard for authorities
+
+🌏 Multi-language support
